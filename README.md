@@ -1,6 +1,6 @@
 # Installation
 
-## Packer
+## [Packer](https://github.com/wbthomason/packer.nvim)
 
 ```
 -- Packer
@@ -12,7 +12,7 @@ use({
 })
 ```
 
-## Lazy
+## [Lazy](https://github.com/folke/lazy.nvim)
 
 ```
 -- Lazy
