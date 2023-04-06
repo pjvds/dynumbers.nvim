@@ -1,14 +1,11 @@
-local M = {}
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local group = augroup("toggling-numbers", { clear = true })
 
 ---@param opts {}
-function M.setup()
-	local augroup = vim.api.nvim_create_augroup
-	local autocmd = vim.api.nvim_create_autocmd
-
-	local group = augroup("toggling-numbers", { clear = true })
-
-	vim.wo.number = true
-	vim.wo.relativenumber = true
+local function setup(opts)
+	vim.o.number = true
+	vim.o.relativenumber = true
 
 	autocmd("ModeChanged", {
 		pattern = { "*:i*", "i*:*" },
@@ -19,4 +16,6 @@ function M.setup()
 	})
 end
 
-return M
+return {
+	setup = setup,
+}
