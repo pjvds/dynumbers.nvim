@@ -2,7 +2,7 @@
 
 ## [Packer](https://github.com/wbthomason/packer.nvim)
 
-```
+``` lua
 -- Packer
 use({
   "pjvds/dynumbers.nvim",
@@ -14,7 +14,7 @@ use({
 
 ## [Lazy](https://github.com/folke/lazy.nvim)
 
-```
+``` lua
 -- Lazy
 {
   "pjvds/dynumbers.nvim",
