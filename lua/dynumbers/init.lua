@@ -1,10 +1,11 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+
 local group = augroup("toggling-numbers", { clear = true })
-local log = require("dynumbers.log").new({
-	plugin = "dynumbers.nvim",
-	level = "warn",
-})
+local log = require("dynumbers.log")
+local default_opts = {
+	log_level = "warn",
+}
 
 assert(log, "failed to create logger")
 
@@ -23,9 +24,13 @@ end
 
 ---@param opts { log_level: string }
 local function setup(opts)
-	if opts.log_level then
-		log.level = opts.log_level
-	end
+	opts = vim.tbl_extend("force", default_opts, opts or {})
+	log.new({
+		plugin = "dynumbers.nvim",
+		level = "warn",
+	})
+
+	assert(log, "failed to create logger")
 
 	vim.o.number = true
 	vim.o.relativenumber = true
@@ -34,6 +39,8 @@ local function setup(opts)
 		pattern = "*",
 		group = group,
 		callback = function(event)
+			assert(log, "log not initialized")
+
 			log.trace("switching to absolute numbers because event: ", event)
 			vim.wo.relativenumber = false
 		end,
@@ -43,6 +50,8 @@ local function setup(opts)
 		pattern = { "*" },
 		group = group,
 		callback = function(event)
+			assert(log, "log not initialized")
+
 			log.trace("evaluating numbers because event: ", event)
 			evaluate()
 		end,
@@ -52,6 +61,8 @@ local function setup(opts)
 		pattern = { "*:*" },
 		group = group,
 		callback = function(event)
+			assert(log, "log not initialized")
+
 			log.trace("evaluating numbers because event: ", event)
 			evaluate()
 		end,
