@@ -3,13 +3,20 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local group = augroup("toggling-numbers", { clear = true })
 local log = require("dynumbers.log")
+local ignores = {}
+
 local default_opts = {
 	log_level = "warn",
+	ignore = {},
 }
 
 assert(log, "failed to create logger")
 
 local function evaluate()
+	if ignores[vim.bo.filetype] then
+		return
+	end
+
 	local mode = vim.api.nvim_get_mode().mode
 	local relative = mode == "n" or mode == "v"
 
@@ -29,6 +36,10 @@ local function setup(opts)
 		plugin = "dynumbers.nvim",
 		level = "warn",
 	})
+
+	for _, v in ipairs(opts.ignore) do
+		ignores[v] = true
+	end
 
 	assert(log, "failed to create logger")
 
