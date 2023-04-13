@@ -7,7 +7,7 @@ local ignores = {}
 
 local default_opts = {
 	log_level = "warn",
-	ignore = {},
+	ignore = { "NvimTree", "startify" },
 }
 
 assert(log, "failed to create logger")
