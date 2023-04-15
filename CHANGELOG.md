@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 2.0.0 - 2023-04-15
+#### Features
+- ignore NvimTree and startify by default - (887e0b0) - pjvds
+- add ability to configure windows to ignore - (32f014b) - pjvds
+
+- - -
+
 ## 1.0.0 - 2023-04-11
 #### Documentation
 - improve syntax hightlighting - (b16a88a) - pjvds
