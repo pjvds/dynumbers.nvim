@@ -24,3 +24,13 @@ use({
   end,
 }
 ```
+
+# Ignore buffer
+
+By default NvimTree and startify buffers are ignored by dynumbers. You can configure the ignore by setting the ignore list when calling setup:
+
+``` lua
+require("dynumbers").setup({
+  ignore: { "NvimTree", "startify", "..."}
+})
+```
